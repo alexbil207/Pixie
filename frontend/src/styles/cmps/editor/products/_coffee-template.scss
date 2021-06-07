@@ -1,0 +1,30 @@
+.coffee-hero {
+    @include for-normal-layout {
+        flex-direction: row !important;
+    }
+}
+
+.coffee-hero-left {
+    @include for-normal-layout {
+        align-items: flex-start !important;
+        width: 50% !important;
+    }
+}
+
+.coffee-hero-img {
+    @include for-normal-layout {
+        height: 75% !important;
+    }
+}
+
+.coffee-card-container {
+    @include for-normal-layout {
+        flex-wrap: unset !important;
+    }
+}
+
+.Coffee-card {
+    @include for-normal-layout {
+        width: 100% !important;
+    }
+}

@@ -1,0 +1,29 @@
+// Editor side
+.editor-side-container {
+  position: fixed;
+  border-inline-end: 2px solid $black;
+  height: calc(100vh - 52px);
+  min-width: rem(300px);
+  width: rem(300px);
+  overflow-y: auto;
+  z-index: 5;
+  scrollbar-width: thin;
+  scrollbar-color: $green-azure $light-grey1;
+
+  ::-webkit-scrollbar {
+    width: 3px;
+  }
+
+  ::-webkit-scrollbar-thumb {
+    background-color: $green-azure;
+  }
+
+  &::-webkit-scrollbar {
+    width: 3px;
+    background-color: $grey;
+  }
+
+  &::-webkit-scrollbar-thumb {
+    background-color: $dark-grey;
+  }
+}

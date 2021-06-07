@@ -1,0 +1,22 @@
+footer {
+  background-color: $azure;
+  color: $white;
+  font-family: inter;
+  padding: 0.5rem;
+
+  & > div {
+    justify-content: space-evenly;
+  }
+
+  & .copyrights-text {
+    font-size: 0.9rem;
+  }
+
+  & .icns-container{
+      display: none;
+
+      @include for-narrow-layout{
+          display: block;
+      }
+  }
+}

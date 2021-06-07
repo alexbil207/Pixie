@@ -1,0 +1,48 @@
+.login-page-container,
+.signup-page-container {
+  padding: 1rem;
+  margin-inline: auto;
+  height: calc(100vh - 52px);
+  background-image: url("../../assets/img/backgroundLogin.jpg");
+  background-size: cover;
+  background-position: top;
+
+  @include for-normal-layout {
+    background-position: center;
+  }
+
+  & form {
+    max-width: em(400px);
+
+    & .MuiOutlinedInput-root {
+      background-color: rgba($light-grey1, 0.8);
+    }
+  }
+
+  & .title {
+    font-size: 1.5em;
+    font-family: inter;
+    font-weight: $fw-bold;
+  }
+
+  & .send-btn,
+  .MuiButton-contained:hover {
+    background-color: $blue;
+    color: $white;
+    font-family: inter;
+  }
+
+  & .toggle-sign-link {
+    font-family: inter;
+    margin-block-start: 1rem;
+
+    & a {
+      @include rounded-corners;
+      border: 1px solid $black;
+      background-color: $light-grey1;
+      padding: 0.5rem 1rem;
+      margin-block-start: 0.5rem;
+      max-width: 50%;
+    }
+  }
+}

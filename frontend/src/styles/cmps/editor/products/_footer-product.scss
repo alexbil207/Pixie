@@ -1,0 +1,13 @@
+.footer-product {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  background-color: $black;
+  height: rem(85px);
+  width: 100%;
+
+  & .product-copyrights {
+    display: flex;
+    color: $white;
+  }
+}

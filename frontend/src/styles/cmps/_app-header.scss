@@ -1,0 +1,81 @@
+// App header
+.main-header {
+  position: fixed;
+  background-color: $light-black;
+  color: $white;
+  width: 100%;
+  z-index: 5;
+
+  & div {
+    height: em(52px);
+  }
+
+  & img {
+    height: em(25px);
+    width: auto;
+  }
+}
+
+.navlinks-container {
+  position: absolute;
+  right: 0;
+  width: 100%;
+
+  &.hider {
+    display: none;
+  }
+
+  & li {
+    background-color: $light-grey1;
+    color: $black;
+    font-weight: $fw-bold;
+    font-family: inter;
+    letter-spacing: 1px;
+    border-block-end: 1px solid $grey;
+    transition: all ease-in-out $t-fast;
+
+    &:hover {
+      color: $white;
+    }
+
+    & a {
+      display: block;
+      padding: 1rem;
+      transition: background-color ease-in-out $t-fast;
+
+      &:hover{
+        background-color: $dark-grey;
+      }
+    }
+  }
+
+  @include for-normal-layout {
+    display: flex !important;
+    position: inherit;
+
+    & li {
+      background-color: inherit;
+      color: inherit;
+      border-block-end: 0;
+
+      & a {
+        display: initial;
+        padding: 1em;
+        transition: color ease-in-out $t-fast;
+
+        &:hover {
+          background-color: $light-black;
+          box-shadow: inset 0 -8px 0px -6px $azure;
+        }
+
+        &.active {
+          color: $azure;
+        }
+      }
+    }
+  }
+}
+
+.pseudo-header {
+  height: em(52px);
+}

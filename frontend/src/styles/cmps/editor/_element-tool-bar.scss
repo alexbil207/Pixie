@@ -1,0 +1,32 @@
+// Element tool bar
+.element-tool-bar {
+  cursor: pointer;
+  display: none;
+  position: absolute;
+  background-color: $black;
+  font-size: rem(13px);
+  letter-spacing: 0 !important;
+  line-height: initial;
+  z-index: 5;
+
+  &:not(.container) {
+    top: 0;
+    right: 0;
+  }
+
+  & ::before {
+    color: $white;
+    padding: 2px;
+  }
+
+  & span:not(:last-child) {
+    border-inline-end: 1px dashed $grey;
+  }
+
+  &.container {
+    background-color: $dark-grey;
+    bottom: 0;
+    left: 0;
+    padding: 0;
+  }
+}

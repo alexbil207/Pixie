@@ -1,0 +1,10 @@
+// Page layout
+.container {
+  margin: 0 auto;
+  padding: 0 1rem;
+
+  @include for-large-layout {
+    padding: 0;
+    max-width: $large-breakpoint;
+  }
+}

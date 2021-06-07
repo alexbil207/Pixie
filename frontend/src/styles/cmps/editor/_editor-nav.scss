@@ -1,0 +1,23 @@
+// Editor navigation (create, edit)
+.editor-nav-container {
+  &>div {
+    display: inline-block;
+    background-color: $dark-grey;
+    color: $white;
+    font-weight: $fw-bold;
+    font-family: inter;
+    letter-spacing: 1px;
+    padding: 10px;
+    width: 100%;
+    transition: background-color ease-in-out $t-fast;
+
+    &:hover {
+      background-color: $dark-grey;
+    }
+
+    &.active {
+      background-color: $light-grey1;
+      color: $black;
+    }
+  }
+}

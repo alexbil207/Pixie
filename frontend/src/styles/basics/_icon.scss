@@ -1,0 +1,150 @@
+// App header
+.hamburger-icn {
+  transition: color ease-in-out $t-fast;
+
+  &::before {
+    content: "\f0c9";
+  }
+
+  &:hover,
+  &.active {
+    color: $azure;
+  }
+
+  @include for-normal-layout {
+    display: none;
+  }
+}
+
+// Editor
+.editor-menu-icn::before {
+  content: "\f093";
+}
+
+.save-icn::before {
+  content: "\f0c7";
+}
+
+.publish-icn::before {
+  content: "\f1e0";
+}
+
+.save-icn::before,
+.publish-icn::before {
+  margin-inline-end: 0.5rem;
+}
+
+.create-el-icn {
+  display: block;
+
+  &::before {
+    content: "\f067";
+  }
+}
+
+.edit-el-icn {
+  display: block;
+
+  &::before {
+    content: "\f304";
+  }
+}
+
+.editor-text-pref-icn {
+  cursor: pointer;
+  background-color: $light-grey1;
+  padding: 0.5rem;
+
+  &.left::before {
+    content: "\f036";
+  }
+
+  &.center::before {
+    content: "\f037";
+  }
+
+  &.right::before {
+    content: "\f038";
+  }
+
+  &.italic::before {
+    content: "\f033";
+  }
+
+  &.underline::before {
+    content: "\f0cd";
+  }
+
+  &.active {
+    background-color: $grey;
+  }
+}
+
+// Element toolbar
+.tool-bar-icn {
+  padding: 2px;
+
+  &:hover {
+    background-color: darken($green-azure, 10);
+  }
+
+  &.trash::before {
+    content: "\f1f8";
+  }
+
+  &.up-arrow::before {
+    content: "\f062";
+  }
+
+  &.down-arrow::before {
+    content: "\f063";
+  }
+
+  &.edit::before {
+    content: "\f304";
+  }
+}
+
+// Profile
+.user-icn::before {
+  content: "\f504";
+}
+
+.watch-icn::before {
+  content: "\f06e";
+}
+
+.trash-icn::before {
+  content: "\f1f8";
+}
+
+.plus-icon::before {
+  content: "\f067"
+}
+
+// Homepage
+.scroll-arrow-icn::before{
+  content: "\f309";
+}
+
+// Footer
+.footer-icn {
+  @include rounded-corners;
+  color: $white;
+
+  &:not(:last-of-type){
+    margin-inline-end: 1rem;
+  }
+
+  &.facebook::before {
+    content: "\f39e";
+  }
+
+  &.twiter::before{
+    content: "\f099";
+  }
+
+  &.linked-in::before{
+    content: "\f0e1";
+  }
+}

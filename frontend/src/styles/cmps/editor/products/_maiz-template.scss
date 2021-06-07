@@ -1,0 +1,55 @@
+.hamburger-icon {
+    &::before {
+        content: "\f0c9";
+    }
+
+    @include for-normal-layout {
+        display: none !important;
+    }
+}
+
+.nav-desktop {
+    display: none !important;
+
+    @include for-normal-layout {
+        display: inline !important;
+    }
+}
+
+.maiz-hero {
+    @media (max-width: 830px) {
+        background-image: url("https://i.ibb.co/k1LfWgS/zgqquanply11gx5jsgsf.jpg") !important;
+    }
+}
+
+.maiz-hero-container {
+    @media (max-width: 830px) {
+        justify-content: center !important;
+        height: 70% !important;
+    }
+}
+
+.maiz-hero-span {
+    @media (max-width: 830px) {
+        font-size: 35px !important;
+    }
+}
+
+.maiz-cards-container {
+    @include for-normal-layout {
+        height: 46vw;
+        flex-wrap: unset !important;
+    }
+}
+
+.maiz-cards {
+    @include for-normal-layout {
+        height: unset !important;
+    }
+}
+
+.maiz-footer {
+    @include for-normal-layout {
+        flex-direction: row !important;
+    }
+}

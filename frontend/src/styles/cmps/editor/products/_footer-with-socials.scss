@@ -1,0 +1,41 @@
+.FWS-copyrights {
+  flex-basis: 100%;
+  justify-content: center;
+  margin-block-end: 15px;
+}
+
+.FWS-company-name {
+  flex-basis: 100%;
+  justify-content: center;
+  margin-block-end: 15px;
+
+  @include for-normal-layout {
+    flex-basis: unset;
+    margin-block-end: 0;
+  }
+}
+
+.socials-container {
+  flex-basis: 100%;
+  justify-content: center;
+
+  @include for-normal-layout {
+    flex-basis: unset;
+  }
+}
+
+.FWS-facebook-icn::before {
+  content: "\f082";
+}
+
+.FWS-twiter-icn::before {
+  content: "\f081";
+}
+
+.FWS-instagram-icn::before {
+  content: "\e055";
+}
+
+.FWS-pinterest-icn::before {
+  content: "\f08c";
+}

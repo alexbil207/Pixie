@@ -1,0 +1,19 @@
+.editor-prevent-mobile {
+  font-family: inter;
+  font-weight: $fw-bold;
+  letter-spacing: 1px;
+  padding: rem(10px);
+  height: 80vh;
+
+  @include for-normal-layout {
+    display: none;
+  }
+}
+
+.editor-container {
+  display: none;
+
+  @include for-normal-layout {
+    display: block;
+  }
+}

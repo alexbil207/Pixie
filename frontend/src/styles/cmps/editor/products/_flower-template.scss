@@ -1,0 +1,101 @@
+.flower-header-container {
+  flex-direction: row;
+
+  @include for-normal-layout {
+    flex-direction: column;
+  }
+
+  & .nav-btns-container {
+    display: none;
+
+    @include for-normal-layout {
+      display: flex;
+    }
+  }
+}
+
+.flower-hero {
+  @include for-normal-layout {
+    justify-content: center !important;
+    height: 600px !important;
+  }
+}
+
+.flower-hero-container {
+  @include for-normal-layout {
+    flex-direction: row !important;
+    width: 80% !important;
+  }
+}
+
+.flower-hero-text {
+  @include for-normal-layout {
+    width: 60% !important;
+    align-items: flex-start !important;
+    justify-content: center !important;
+  }
+}
+
+.flower-text-section {
+  @include for-normal-layout {
+    flex-direction: row !important;
+  }
+}
+
+.flower-text-section-container {
+  @include for-normal-layout {
+    width: 50% !important;
+  }
+}
+
+.flower-text-section-img {
+  @include for-normal-layout {
+    width: 40% !important;
+  }
+}
+
+.flower-cards-container {
+  @include for-normal-layout {
+    flex-direction: row !important;
+  }
+}
+
+.flower-card {
+  @include for-normal-layout {
+    width: 30% !important;
+  }
+}
+
+.deliver-icon {
+  //fas
+  &::before {
+    content: "\f48b";
+  }
+}
+
+.fast-icon {
+  //fas
+  &::before {
+    content: "\f70c";
+  }
+}
+
+.care-icon {
+  //fas
+  &::before {
+    content: "\f4be";
+  }
+}
+
+.flower-gallery {
+  @include for-normal-layout {
+    flex-direction: row !important;
+  }
+}
+
+.flower-gallery-col {
+  @include for-normal-layout {
+    width: 20% !important;
+    height: 45vw !important;
+  }
+}

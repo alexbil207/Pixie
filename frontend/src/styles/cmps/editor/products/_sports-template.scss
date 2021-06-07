@@ -1,0 +1,28 @@
+// Header
+.sports-header {
+  background-color: transparent;
+
+  & .hamburger {
+    display: flex;
+
+    &::before {
+      content: "\f0c9";
+    }
+
+    @include for-normal-layout {
+      display: none;
+    }
+  }
+
+  & .links-container {
+    display: none;
+
+    @include for-normal-layout {
+      display: flex;
+    }
+  }
+
+  & .user::before{
+      content: "\f007";
+  }
+}

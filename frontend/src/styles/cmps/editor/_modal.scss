@@ -1,0 +1,76 @@
+.background-modal {
+  height: 100vh;
+  width: 100vw;
+  position: absolute;
+  top: 0;
+  z-index: 0;
+}
+
+.modal {
+  position: absolute;
+  right: 0;
+  bottom: 4rem;
+  @include ease-rounded-corners;
+  background-color: $black;
+  padding: 1rem;
+  width: 25vw;
+  z-index: 10;
+
+  & h2 {
+    color: $azure;
+    font-size: 1.5rem;
+    font-family: inter;
+    font-weight: $fw-bold;
+    letter-spacing: 1px;
+  }
+
+  & div {
+    margin-block-start: 1rem;
+
+    & label {
+      color: $white;
+      font-family: inter;
+    }
+
+    & input {
+      border: 1px solid $light-grey1;
+      color: $black;
+      padding: 5px;
+      margin-block-start: 0.5rem;
+      width: 100%;
+      outline: none;
+
+      &:focus {
+        border: 1px solid $azure;
+      }
+    }
+
+    & .btn {
+      font-family: inter;
+      font-weight: 600;
+      letter-spacing: 1px;
+
+      & svg {
+        margin-inline-end: 0.5rem;
+      }
+
+      &.publish {
+        background-color: $azure;
+        color: $white;
+        width: 8rem;
+
+        &:hover {
+          background-color: darken($azure, 10);
+        }
+      }
+
+      &.save {
+        background-color: $light-grey2;
+
+        &:hover {
+          background-color: darken($light-grey2, 10);
+        }
+      }
+    }
+  }
+}

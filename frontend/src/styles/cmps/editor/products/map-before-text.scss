@@ -1,0 +1,19 @@
+.map-with-text-map-container {
+  width: 100%;
+  margin-block-end: 10px;
+
+  @include for-normal-layout {
+    width: 40vw;
+    margin-block-end: 0;
+  }
+}
+
+.map-with-text-text-container {
+  width: 100%;
+
+  @include for-normal-layout {
+    flex-basis: 45%;
+    width: inherit;
+    margin-block-end: 0;
+  }
+}

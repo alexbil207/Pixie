@@ -1,0 +1,209 @@
+.homepage {
+  background-image: url("../../assets/img/homepage/background.jpg");
+  background-size: cover;
+  background-attachment: fixed;
+
+  & img {
+    mix-blend-mode: multiply;
+  }
+}
+
+.hero-container {
+  padding: 2rem;
+  height: calc(100vh - 52px);
+
+  & h1 {
+    color: $dark-blue;
+    font-size: 2rem;
+    font-weight: $fw-extra-bold;
+    font-family: RobotoSlab;
+    letter-spacing: 2px;
+    text-transform: capitalize;
+    max-width: 32ch;
+    text-align: center;
+
+    @include for-normal-layout {
+      font-size: 3rem;
+    }
+
+    @include for-wide-layout {
+      text-align: left;
+    }
+
+    & span {
+      color: $azure;
+    }
+  }
+
+  & .content-container {
+    flex-grow: 1;
+
+    p {
+      font-size: 1.8rem;
+      font-family: CrimsonPro;
+      text-align: center;
+      margin: 2rem auto;
+      max-width: 30ch;
+
+      @include for-wide-layout {
+        text-align: left;
+        margin-block: 4rem;
+      }
+    }
+
+    a {
+      border-radius: rem(10px);
+      background-color: $azure;
+      color: $white;
+      font-size: 1.5rem;
+      font-weight: $fw-bold;
+      font-family: RobotoSlab;
+      letter-spacing: 2px;
+      padding: 0.5rem;
+      margin: 0 auto;
+      width: 10rem;
+      transition: all ease-in-out $t-fast;
+
+      @include for-wide-layout {
+        margin-block-end: -2rem;
+        margin-inline: 0;
+      }
+
+      &:hover {
+        width: 13rem;
+        background-color: darken($azure, 10);
+      }
+    }
+  }
+
+  & img {
+    display: none;
+
+    @include for-normal-layout {
+      display: block;
+      margin: 0 auto;
+      width: 300px;
+    }
+
+    @include for-wide-layout {
+      width: 400px;
+    }
+
+    @include for-large-layout {
+      width: 500px;
+    }
+  }
+}
+
+.guide-parse-background {
+  padding: 1rem;
+  background-color: $white;
+
+  &:nth-child(odd) {
+    background-color: $light-grey1;
+  }
+
+  & .container {
+    max-width: 1000px;
+  }
+
+  & .text {
+    & h2 {
+      color: $azure;
+      font-size: 2rem;
+      font-weight: $fw-bold;
+      font-family: RobotoSlab;
+      text-transform: uppercase;
+
+      @include for-normal-layout {
+        max-width: 25ch;
+      }
+
+      @include for-wide-layout {
+        max-width: 30ch;
+      }
+    }
+
+    & p {
+      font-size: 1.2rem;
+      font-family: inter;
+      margin-block: 1rem;
+
+      @include for-normal-layout {
+        max-width: 25ch;
+      }
+
+      @include for-wide-layout {
+        max-width: 35ch;
+      }
+
+      & span {
+        color: $azure;
+      }
+    }
+  }
+
+  & img {
+    @include for-mobile-layout {
+      display: none;
+    }
+
+    @include for-narrow-layout {
+      order: 2;
+      width: 150px;
+    }
+
+    @include for-normal-layout {
+      width: 200px;
+
+      &.parse-even {
+        order: -1;
+      }
+    }
+
+    @include for-wide-layout {
+      width: 350px;
+    }
+  }
+}
+
+.templates-container {
+  max-width: 1000px;
+  margin-block-start: 1rem;
+  padding-block-end: 1rem;
+
+  & h2 {
+    color: $azure;
+    font-size: 2rem;
+    font-weight: $fw-bold;
+    font-family: RobotoSlab;
+    margin-block-end: 1rem;
+  }
+
+  & .templates-preview-container {
+    grid-template-columns: repeat(auto-fill, minmax(250px, 1fr));
+    gap: 2rem;
+    margin-block-end: 1rem;
+  }
+
+  & .show-more-container {
+    padding: 1rem;
+    text-align: center;
+
+    & a {
+      border-radius: rem(10px);
+      background-color: $azure;
+      color: $white;
+      font-size: 1.2rem;
+      font-weight: $fw-bold;
+      font-family: RobotoSlab;
+      letter-spacing: 1px;
+      padding: 0.5rem 1rem;
+      transition: all ease-in-out $t-fast;
+
+      &:hover {
+        background-color: darken($azure, 10);
+      }
+    }
+  }
+}

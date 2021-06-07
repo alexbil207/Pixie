@@ -1,0 +1,32 @@
+.flower-form-img-container {
+  order: 2;
+  margin-block-start: 30px;
+  height: 200px;
+  width: 100%;
+
+  @include for-narrow-layout {
+    height: 250px;
+  }
+
+  @include for-wide-layout {
+    order: -1;
+    margin-block-start: 0;
+    margin-inline-end: 30px;
+    height: auto;
+    width: 380px;
+  }
+
+  @include for-large-layout {
+    width: 500px;
+  }
+}
+
+.flower-form-text-container {
+  @include for-wide-layout {
+    flex-grow: 1;
+    flex-basis: 46%;
+  }
+
+  @media screen and (min-width: 1030px) {
+  }
+}

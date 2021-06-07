@@ -1,0 +1,41 @@
+// Editor options circle
+.editor-options-container {
+  display: none;
+
+  @include for-normal-layout {
+    display: flex;
+    flex-direction: column-reverse;
+    position: fixed;
+    right: 1rem;
+    bottom: 1rem;
+
+    & .circle {
+      align-self: flex-end;
+      border-radius: 50%;
+      background-color: $dark-grey;
+      color: $white;
+      padding: 1rem;
+      width: fit-content;
+      transition: all ease-in-out $t-normal;
+
+      &:hover,
+      &.open {
+        background-color: $azure;
+        color: $black;
+      }
+    }
+
+    & .menu-container {
+      display: none;
+      width: 300px;
+      height: 300px;
+      background-color: green;
+      margin-bottom: 0.5rem;
+      border-radius: 3px;
+
+      &.open {
+        display: block;
+      }
+    }
+  }
+}

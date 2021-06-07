@@ -1,0 +1,22 @@
+.full-width-card-img {
+  flex-basis: 100%;
+  order: -1;
+
+  @include for-normal-layout {
+    flex-basis: 30vw;
+    max-height: 30vh;
+    order: inherit;
+  }
+}
+
+.full-width-card-text-first-text {
+  @include for-normal-layout {
+    margin-inline-end: 2rem;
+  }
+}
+
+.full-width-card-img-first-text {
+  @include for-normal-layout {
+    margin-inline-start: 2rem;
+  }
+}

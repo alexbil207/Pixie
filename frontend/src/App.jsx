@@ -6,12 +6,13 @@ import { Template } from './pages/Template';
 import { Profile } from './pages/Profile';
 import { Login } from './pages/Login';
 import { SignUp } from './pages/SignUp';
-import { About } from './pages/About';
 import { WebDetails } from './pages/WebDetails';
-import { connect } from 'react-redux';
+import { useSelector } from 'react-redux';
 import { AppFooter } from './cmps/AppFooter';
 
-function _App({ isPageView, isEditMode }) {
+
+export const App = () => {
+  const { isPageView, isEditMode } = useSelector(state => state.appModule)
   return (
     <section className="app">
       <Router>
@@ -24,7 +25,6 @@ function _App({ isPageView, isEditMode }) {
             <Route path="/profile/:userId" component={Profile} />
             <Route path="/template" component={Template} />
             <Route path="/editor" component={Editor} />
-            <Route path="/about" component={About} />
             <Route path="/" component={HomePage} />
           </Switch>
         </main>
@@ -34,12 +34,20 @@ function _App({ isPageView, isEditMode }) {
   );
 }
 
-function mapStateToProps(state) {
-  return {
-    isPageView: state.appModule.isPageView,
-    isEditMode: state.appModule.isEditMode
-  }
-}
 
 
-export const App = connect(mapStateToProps, null)(_App)
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+

@@ -16,7 +16,6 @@ class _Editor extends React.Component {
     state = {
         isUserMsg: false,
         msg: '',
-
         stepsEnabled: false,
         initialStep: 0,
         steps: [
@@ -77,7 +76,7 @@ class _Editor extends React.Component {
         await this.props.addSection(addedSection);
         this.resetEditorAccordion();
         const siteContainer = document.querySelector('.site-container');
-        siteContainer.scrollTo({top: siteContainer.scrollHeight, behavior: 'smooth'});
+        siteContainer.scrollTo({ top: siteContainer.scrollHeight, behavior: 'smooth' });
     }
 
     onAddElement = (elementType, src = null) => {

@@ -1,6 +1,6 @@
 import React from "react";
 
-export function TemplatePreview({ template, onSetData }) {
+export const TemplatePreview = ({ template, onSetData }) => {
     return (
 
         <div className="template-card-container">

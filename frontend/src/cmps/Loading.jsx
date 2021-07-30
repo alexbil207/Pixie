@@ -1,7 +1,6 @@
 import Loader from '../assets/img/Loader.gif';
 
-export function Loading() {
-
+export const Loading = () => {
     return (
         <div style={{
             display: 'flex',

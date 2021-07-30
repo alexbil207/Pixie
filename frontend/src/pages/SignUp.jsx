@@ -50,7 +50,7 @@ export const SignUp = () => {
 
 
         try {
-            await signUp(form);
+            dispatch(signUp(form));
             history.push(`/profile/${user._id}`);
         } catch (err) {
             userMsgShow('Email Already in use');

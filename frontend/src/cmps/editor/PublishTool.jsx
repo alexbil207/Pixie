@@ -1,43 +1,31 @@
-import React from 'react';
+import React, { useState } from 'react';
 import { Modal } from '../Modal';
-import { connect } from 'react-redux';
+import { useDispatch, useSelector } from 'react-redux';
 import { saveWeb } from '../../store/actions/web-action';
 
 
-class _PublishTool extends React.Component {
-    state = {
-        isModalOpen: false,
+export const PublishTool = ({ userMsgShow }) => {
+    const dispatch = useDispatch();
+    const { data } = useSelector(state => state.dataModule)
+    const { user } = useSelector(state => state.userModule)
+
+
+    const [isModalOpen, setModalOpen] = useState(false);
+
+
+
+    const toggleMenu = () => {
+        setModalOpen(!isModalOpen);
     }
 
-
-    toggleMenu = () => {
-        const { isModalOpen } = this.state;
-        this.setState(prevState => ({ ...prevState, isModalOpen: !isModalOpen }));
-    }
-
-
-    componentDidMount() {
-        const { name } = this.props;
-        if (name) this.setState({ name })
-        return
-    }
-
-
-    handleChange = ({ target }) => {
-        const name = target.name;
-        const value = target.value;
-        this.setState(prevState => ({ ...prevState, [name]: value }))
-    }
-
-    onSubmit = async (name, isPublished) => {
-        const { data, saveWeb, user, userMsgShow } = this.props;
+    const onSubmit = async (name, isPublished) => {
         // if there is no user UserMsg "Login required"
         if (!user) {
             userMsgShow('Login required');
-            this.toggleMenu()
+            toggleMenu();
             return;
         }
-        this.toggleMenu(); //closing modal
+        toggleMenu(); //closing modal
 
         // if there is an a id only update 
         if (data._id) {
@@ -47,7 +35,7 @@ class _PublishTool extends React.Component {
                 isPublished,
             };
             try {
-                await saveWeb(webInfo);
+                dispatch(saveWeb(webInfo));
                 userMsgShow(`${isPublished ? 'Published!' : 'Saved to Drafts'}`)
                 window.open(`http://localhost:3000/#/view/${webInfo._id}`); //change to heroku
                 // window.open(`https://pixie-ca.herokuapp.com/#/view/${webInfo._id}`); //heroku
@@ -65,7 +53,7 @@ class _PublishTool extends React.Component {
             creatorId: user._id,
         };
         try {
-            const savedWeb = await saveWeb(webInfo);
+            const savedWeb = dispatch(saveWeb(webInfo));
             userMsgShow(`${isPublished ? 'Published!' : 'Saved to Drafts'}`);
             window.open(`http://localhost:3000/#/view/${savedWeb._id}`); //change to heroku
             // window.open(`https://pixie-ca.herokuapp.com/#/view/${savedWeb._id}`); //heroku
@@ -74,47 +62,26 @@ class _PublishTool extends React.Component {
         }
 
     }
-
-
-    render() {
-        const { isModalOpen } = this.state;
-        const { data } = this.props;
-        return (
-            <>
-                <div className={isModalOpen ? 'background-modal' : ''}
-                    onClick={this.toggleMenu}
-                ></div>
-                <div className="flex editor-options-container">
-                    <div className={"pointer circle" + (isModalOpen ? ' open' : '')} title="Save and publish" onClick={this.toggleMenu}>
-                        <span className="fas editor-menu-icn"></span>
-                    </div>
-                    {isModalOpen && <Modal
-                        isModalOpen={isModalOpen}
-                        toggleMenu={this.toggleMenu}
-                        name={data.name}
-                        onSubmit={this.onSubmit}
-
-                    />}
+    return (
+        <>
+            <div className={isModalOpen ? 'background-modal' : ''}
+                onClick={() => toggleMenu()}
+            ></div>
+            <div className="flex editor-options-container">
+                <div className={"pointer circle" + (isModalOpen ? ' open' : '')} title="Save and publish" onClick={() => toggleMenu()}>
+                    <span className="fas editor-menu-icn"></span>
                 </div>
+                {isModalOpen && <Modal
+                    isModalOpen={isModalOpen}
+                    toggleMenu={toggleMenu}
+                    name={data.name}
+                    onSubmit={onSubmit}
 
-            </>
-        )
-    }
+                />}
+            </div>
+
+        </>
+    )
+
+
 }
-
-
-
-
-const mapDispatchToProps = {
-    saveWeb
-}
-
-function mapStateToProps(state) {
-    return {
-        data: state.dataModule.data,
-        user: state.userModule.user,
-        web: state.webModule.web
-    }
-}
-
-export const PublishTool = connect(mapStateToProps, mapDispatchToProps)(_PublishTool)

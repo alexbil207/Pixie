@@ -8,7 +8,7 @@ import { NavCmp } from './dynamic-render/NavCmp'
 import { InputCmp } from './dynamic-render/InputCmp.jsx'
 import { IframeCmp } from './dynamic-render/IframeCmp'
 
-export function DynamicCmp({ child, onReorderingElement, onRemoveElement, setEditingElement, isEdit, editingElement, onUpdateElement }) {
+export const DynamicCmp = ({ child, onReorderingElement, onRemoveElement, setEditingElement, isEdit, editingElement, onUpdateElement }) => {
 
     function getClassName(child, editingElement) {
         if (editingElement && child.id === editingElement.id) {

@@ -8,7 +8,7 @@ import { elementService } from '../service/element-service';
 import { storageService } from '../service/storage-service';
 import { Loading } from '../cmps/Loading';
 import { EditorSideBar } from '../cmps/editor/EditorSideBar';
-import { PageRender } from '../cmps/editor/page-render/PageRenderV2';
+import { PageRender } from '../cmps/editor/page-render/PageRender';
 import { PublishTool } from '../cmps/editor/PublishTool';
 import { UserMsg } from '../cmps/UserMsg';
 

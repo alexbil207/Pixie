@@ -1,5 +1,5 @@
 import React from 'react';
-import { connect, useDispatch, useSelector } from 'react-redux';
+import { connect } from 'react-redux';
 import debounce from 'react-debouncing';
 import { Accordion, AccordionItem, AccordionItemHeading, AccordionItemButton, AccordionItemPanel } from 'react-accessible-accordion';
 import { editorService } from '../../service/editor-service';

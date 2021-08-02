@@ -1,5 +1,5 @@
 import React from 'react';
-import { connect } from 'react-redux';
+import { connect, useDispatch, useSelector } from 'react-redux';
 import debounce from 'react-debouncing';
 import { Accordion, AccordionItem, AccordionItemHeading, AccordionItemButton, AccordionItemPanel } from 'react-accessible-accordion';
 import { editorService } from '../../service/editor-service';
@@ -13,7 +13,7 @@ import { EditBoxStyling } from './editor-sections/EditBoxStyling';
 import { EditBorder } from './editor-sections/EditBorder';
 
 export class _ElementEditor extends React.Component {
-    editFieldsWithPx = editorService.getFieldsWithPx();
+    // editFieldsWithPx = editorService.getFieldsWithPx();
     editFieldsWithDebounce = editorService.getFieldsWithDebounce();
 
     handleSpecialInputChange = (field, val) => {

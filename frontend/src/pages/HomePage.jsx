@@ -13,9 +13,9 @@ import { TemplatePreview } from "../cmps/TemplatePreview";
 
 
 export const HomePage = () => {
-    const dispatch = useDispatch()
-    const { templates, isLoading } = useSelector(state => state.templateModule)
-    const history = useHistory()
+    const dispatch = useDispatch();
+    const { templates, isLoading } = useSelector(state => state.templateModule);
+    const history = useHistory();
 
     useEffect(() => {
         dispatch(loadTemplates())

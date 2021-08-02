@@ -1,5 +1,5 @@
-import React from 'react';
-import { connect } from 'react-redux';
+import React, { useEffect, useState } from 'react';
+import { useDispatch, useSelector } from 'react-redux';
 import { Steps } from 'intro.js-react';
 import { setData, addSection } from '../store/actions/data-actions';
 import { removeEditingElement, setEditorMode } from '../store/actions/editor-actions';
@@ -12,8 +12,10 @@ import { PageRender } from '../cmps/editor/page-render/PageRenderV2';
 import { PublishTool } from '../cmps/editor/PublishTool';
 import { UserMsg } from '../cmps/UserMsg';
 
-class _Editor extends React.Component {
-    state = {
+
+export const Editor = () => {
+    const [state, setState] = useState({
+
         isUserMsg: false,
         msg: '',
         stepsEnabled: false,
@@ -41,138 +43,117 @@ class _Editor extends React.Component {
                 tooltipClass: 'steps-tool-tip',
             },
         ]
-    }
+    });
+    const dispatch = useDispatch();
+    const { data } = useSelector(state => state.dataModule);
+    const { editingElement } = useSelector(state => state.editorModule);
+    const { isLoading } = useSelector(state => state.webModule);
 
-    componentDidMount() {
-        const { isEditorMode } = this.props;
-        isEditorMode(true);
-
-        if (this.props.data.childs.length) {
+    useEffect(() => {
+        dispatch(isEditorMode(true));
+        if (data.childs.length) {
             return;
         } else {
             const savedData = storageService.loadFromStorage('website')
             if (savedData) {
-                this.props.setData({ data: savedData });
+                dispatch(setData({ data: savedData }));
             }
         }
-    }
 
-    componentWillUnmount() {
-        const { isEditorMode, setEditorMode } = this.props;
-        setEditorMode('addElement');
-        isEditorMode(false);
-        this.setState(prevState => ({ ...prevState, stepsEnabled: false }));
-    }
+        return () => {
+            dispatch(setEditorMode('addElement'));
+            dispatch(isEditorMode(false));
+            setState(prevState => ({ ...prevState, stepsEnabled: false }));
+        }
+    }, [dispatch, data])
 
-    userMsgShow = (msg) => {
-        this.setState(prevState => ({ ...prevState, isUserMsg: true, msg: msg }))
+
+    const userMsgShow = (msg) => {
+        setState(prevState => ({ ...prevState, isUserMsg: true, msg: msg }))
         setTimeout(() => {
-            this.setState(prevState => ({ ...prevState, isUserMsg: false, msg: '' }))
+            setState(prevState => ({ ...prevState, isUserMsg: false, msg: '' }))
         }, 2000)
     }
 
-    onAddSection = async (section, src = null) => {
+    const onAddSection = (section, src = null) => {
         const addedSection = elementService.getElement(section, src);
-        await this.props.addSection(addedSection);
-        this.resetEditorAccordion();
+        dispatch(addSection(addedSection));
+        resetEditorAccordion();
         const siteContainer = document.querySelector('.site-container');
         siteContainer.scrollTo({ top: siteContainer.scrollHeight, behavior: 'smooth' });
     }
 
-    onAddElement = (elementType, src = null) => {
-        const { data, editingElement } = this.props;
+    const onAddElement = (elementType, src = null) => {
         if (!editingElement || !editingElement.childs) {
             console.log('trying to push element to a chidless element...');
             return;
         }
         const { id } = editingElement
         const newData = JSON.parse(JSON.stringify(elementService.addElement(data, id, elementType, src)));
-        this.props.setData({ data: newData });
+        dispatch(setData({ data: newData }));
     }
 
-    onUpdateElement = (newElement) => {
+    const onUpdateElement = (newElement) => {
         const elementId = newElement.id;
-        const newData = JSON.parse(JSON.stringify(elementService.editElement(this.props.data, elementId, newElement)));
-        this.props.setData({ data: newData });
+        const newData = JSON.parse(JSON.stringify(elementService.editElement(data, elementId, newElement)));
+        dispatch(setData({ data: newData }));
     }
 
-    onRemoveElement = (elementId) => {
-        const newData = JSON.parse(JSON.stringify(elementService.removeElementById(this.props.data, elementId)));
-        this.props.setData({ data: newData });
-        this.props.removeEditingElement();
+    const onRemoveElement = (elementId) => {
+        const newData = JSON.parse(JSON.stringify(elementService.removeElementById(data, elementId)));
+        dispatch(setData({ data: newData }));
+        dispatch(removeEditingElement());
     }
 
-    onReorderingElement = (elementId, val) => {
-        const newData = JSON.parse(JSON.stringify(elementService.reorderElement(this.props.data, elementId, val)));
-        this.props.setData({ data: newData });
+    const onReorderingElement = (elementId, val) => {
+        const newData = JSON.parse(JSON.stringify(elementService.reorderElement(data, elementId, val)));
+        dispatch(setData({ data: newData }));
     }
 
-    saveWebsiteToStorage = () => {
-        storageService.saveToStorage('website', this.props.data)
+    const saveWebsiteToStorage = () => {
+        storageService.saveToStorage('website', data)
     }
 
-    onExitSteps = () => {
-        this.setState(prevState => ({ ...prevState, stepsEnabled: false }));
+    const onExitSteps = () => {
+        setState(prevState => ({ ...prevState, stepsEnabled: false }));
     };
 
-    resetEditorAccordion = () => {
-        const { setEditorMode } = this.props;
-        setEditorMode('editElement');
-        setEditorMode('addElement');
+    const resetEditorAccordion = () => {
+        dispatch(setEditorMode('editElement'));
+        dispatch(setEditorMode('addElement'));
     }
 
+    if (isLoading) return <Loading />;
+    const { childs } = data;
+    const { isUserMsg, msg, stepsEnabled, initialStep, steps } = state;
 
-    render() {
-        let { data, isLoading } = this.props;
-        if (isLoading) return <Loading />;
-        const { childs } = data;
-        const { isUserMsg, msg, stepsEnabled, initialStep, steps } = this.state;
-
-        return (
-            <>
-                <section className="flex column justify-center align-center text-center editor-prevent-mobile">Sorry, the editor is available only on tablets and wider screens.</section>
-                <section className="flex editor-container">
-                    <EditorSideBar onAddElement={this.onAddElement} onAddSection={this.onAddSection} onUpdateElement={this.onUpdateElement} />
-                    <PageRender
-                        onReorderingElement={this.onReorderingElement}
-                        onRemoveElement={this.onRemoveElement}
-                        onUpdateElement={this.onUpdateElement}
-                        saveWebsiteToStorage={this.saveWebsiteToStorage}
-                        childs={childs} />
-                </section>
-                {isUserMsg && <UserMsg msg={msg} />}
-                <PublishTool userMsgShow={this.userMsgShow} />
+    return (
+        <>
+            <section className="flex column justify-center align-center text-center editor-prevent-mobile">Sorry, the editor is available only on tablets and wider screens.</section>
+            <section className="flex editor-container">
+                <EditorSideBar onAddElement={onAddElement} onAddSection={onAddSection} onUpdateElement={onUpdateElement} />
+                <PageRender
+                    onReorderingElement={onReorderingElement}
+                    onRemoveElement={onRemoveElement}
+                    onUpdateElement={onUpdateElement}
+                    saveWebsiteToStorage={saveWebsiteToStorage}
+                    childs={childs} />
+            </section>
+            {isUserMsg && <UserMsg msg={msg} />}
+            <PublishTool userMsgShow={userMsgShow} />
 
 
-                <Steps
-                    hidePrev={true}
-                    hideNext={true}
-                    exitOnEsc={true}
-                    keyboardNavigation={true}
-                    enabled={stepsEnabled}
-                    steps={steps}
-                    initialStep={initialStep}
-                    onExit={this.onExitSteps}
-                />
-            </>
-        );
-    }
+            <Steps
+                hidePrev={true}
+                hideNext={true}
+                exitOnEsc={true}
+                keyboardNavigation={true}
+                enabled={stepsEnabled}
+                steps={steps}
+                initialStep={initialStep}
+                onExit={onExitSteps}
+            />
+        </>
+    );
+
 }
-
-const mapDispatchToProps = {
-    setData,
-    addSection,
-    isEditorMode,
-    removeEditingElement,
-    setEditorMode
-}
-
-function mapStateToProps(state) {
-    return {
-        data: state.dataModule.data,
-        editingElement: state.editorModule.editingElement,
-        isLoading: state.webModule.isLoading
-    }
-}
-
-export const Editor = connect(mapStateToProps, mapDispatchToProps)(_Editor)

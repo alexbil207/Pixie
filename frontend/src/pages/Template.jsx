@@ -27,7 +27,7 @@ export const Template = () => {
         <>
             <div className="templates-page-title">Templates</div>
 
-            <div className="template-list">
+            <div className="template-list container">
                 {/* Make new website */}
                 <div className="template-card-container">
                     <div onClick={() => {

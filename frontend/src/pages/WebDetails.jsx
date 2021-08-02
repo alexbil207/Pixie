@@ -18,7 +18,7 @@ export const WebDetails = () => {
         const pathname = location.pathname.split('/');
         const webId = pathname[pathname.length - 1];
         getWebById(webId);
-    }, [dispatch])
+    }, [dispatch, location.pathname])
 
     const getWebById = async (webId) => {
         const res = await webService.getById(webId);

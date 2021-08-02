@@ -13,7 +13,7 @@ export const Modal = ({ name, onSubmit, isModalOpen }) => {
     useEffect(() => {
         if (name) setName({ name });
         return;
-    }, [])
+    }, [setName, name])
 
 
     return (

@@ -50,7 +50,7 @@ export const HomePage = () => {
             <section>
                 <div className="guide-parse-background">
                     <section className="container" data-aos="fade-left">
-                        <ScrollAnimation animateIn='bounceInLeft' duration={2}>
+                        <ScrollAnimation animateIn='bounceInLeft' duration={1}>
                             <div className="flex wrap space-between">
                                 <div className="text">
                                     <h2>The Freedom to Create the Websites You Want</h2>

@@ -10,7 +10,7 @@ export const AppHeader = () => {
     const dispatch = useDispatch();
 
     const onToggleNav = () => {
-        setNavOpen({ isNavOpen: !isNavOpen });
+        setNavOpen(!isNavOpen);
     }
 
 

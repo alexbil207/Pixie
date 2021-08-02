@@ -1,5 +1,5 @@
 import React from 'react';
-import { connect, useSelector } from 'react-redux'
+import { useSelector } from 'react-redux'
 import { EditorNav } from './EditorNav';
 import { ElementsList } from './ElementsList';
 import { ElementEditor } from './ElementEditor';

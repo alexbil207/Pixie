@@ -1,11 +1,11 @@
-.templates-page-title{
+.templates-page-title {
   color: $azure;
   font-size: 2rem;
   font-weight: $fw-bold;
   font-family: RobotoSlab;
-  margin: 1rem;
+  text-align: center;
 
-  @include for-normal-layout{
+  @include for-normal-layout {
     margin-block-start: 2rem;
   }
 }
@@ -13,8 +13,13 @@
 .template-list {
   display: grid;
   grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+  grid-template-rows: repeat(auto-fill, minmax(300px, 1fr));
   gap: 2rem;
-  margin: 1rem 1rem;
+  padding: 20px 0;
+
+  @include for-normal-layout {
+    height: 91vh;
+  }
 }
 
 .template-card-container {

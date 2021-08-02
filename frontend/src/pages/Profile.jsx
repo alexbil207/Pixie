@@ -3,7 +3,6 @@ import { useDispatch, useSelector } from 'react-redux';
 import { Loading } from '../cmps/Loading.jsx';
 import { EntityList } from '../cmps/profile/EntityList.jsx'
 import { webService } from '../service/web-service'
-import { UserMsg } from '../cmps/UserMsg.jsx';
 import { setData } from '../store/actions/data-actions';
 import { utilService } from '../service/util-service';
 import { pageViewMode } from '../store/actions/app-actions';
@@ -30,6 +29,7 @@ export const Profile = () => {
             return;
         }
         getEntities(user._id)
+        //eslint-disable-next-line 
     }, [dispatch])
 
 
@@ -38,7 +38,10 @@ export const Profile = () => {
         setState({ ...state, entities })
     }
 
-    useEffect(() => getEntitiesAmount(), [state.entities])
+    useEffect(() => {
+        getEntitiesAmount()
+        //eslint-disable-next-line 
+    }, [state.entities])
 
 
     const changeEntitiesType = (entitiesType) => {
@@ -82,14 +85,8 @@ export const Profile = () => {
             getEntitiesAmount)
     }
 
-    const userMsgShow = (msg) => {
-        setState(prevState => ({ ...prevState, isUserMsg: true, msg }));
-        setTimeout(() => {
-            setState(prevState => ({ ...prevState, isUserMsg: false, msg: '' }))
-        }, 2000);
-    }
     if (isLoading) return <Loading />
-    const { entitiesType, websitesAmount, draftsAmount, isUserMsg, msg } = state
+    const { entitiesType, websitesAmount, draftsAmount } = state
     return (
         <>
             <section className="flex profile-container">
@@ -127,7 +124,6 @@ export const Profile = () => {
                         entitiesType={entitiesType} />
                 </div>
             </section>
-            {isUserMsg && < UserMsg msg={msg} />}
         </>
     )
 
